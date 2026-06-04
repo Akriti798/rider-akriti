@@ -51,17 +51,11 @@ const navigation = useNavigation();
         </View>
 
 <TouchableOpacity
-  style={styles.button}
-onPress={() =>
-navigation.navigate(
-  'PartnerLogin' as never,
-  {mobile} as never,
-)
-}>
-  <Text style={styles.buttonText}>
-    CONTINUE
-  </Text>
-</TouchableOpacity>
+    style={styles.button}
+    onPress={() => navigation.navigate('Registration' as never)}
+  >
+    <Text style={styles.buttonText}>Login</Text>
+  </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

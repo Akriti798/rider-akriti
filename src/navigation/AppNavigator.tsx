@@ -7,6 +7,13 @@ import PartnerLoginScreen from '../screens/auth/PartnerLoginScreen';
 import OtpScreen from '../screens/auth/OtpScreen';
 import PartnerEmailLoginScreen from '../screens/auth/PartnerEmailLoginScreen';
 import PartnerRegisterScreen from '../screens/auth/PartnerRegisterScreen';
+import RegistrationScreen from '../screens/auth/RegistrationScreen';
+import AadharVerificationScreen from '../screens/auth/AadharVerificationScreen';
+import ChooseVehicleScreen from '../screens/auth/ChooseVehicleScreen';
+import VehicleInfoScreen from '../screens/auth/VehicleInfoScreen';
+import BankInfoScreen from '../screens/auth/BankInfoScreen';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -21,12 +28,15 @@ export default function AppNavigator() {
           name="Login"
           component={LoginScreen}
         />
-
+<Stack.Screen name="Registration" component={RegistrationScreen} />
         <Stack.Screen
           name="PartnerLogin"
           component={PartnerLoginScreen}
         />
-
+<Stack.Screen name="AadharVerification" component={AadharVerificationScreen} />
+<Stack.Screen name="ChooseVehicle" component={ChooseVehicleScreen} />
+<Stack.Screen name="VehicleInfo" component={VehicleInfoScreen} />
+<Stack.Screen name="BankInfo" component={BankInfoScreen} />
         <Stack.Screen
           name="OtpScreen"
           component={OtpScreen}

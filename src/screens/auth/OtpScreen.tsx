@@ -8,9 +8,10 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
 
+import {useRoute, useNavigation} from '@react-navigation/native';
 const OtpScreen = () => {
+    const navigation = useNavigation();
   const route = useRoute();
 
 const {mobile} =
@@ -128,11 +129,12 @@ const {mobile} =
     </Text>
   </TouchableOpacity>
 )}
-      <TouchableOpacity style={styles.verifyButton}>
-        <Text style={styles.verifyText}>
-          Verify
-        </Text>
-      </TouchableOpacity>
+      <TouchableOpacity
+          style={styles.verifyButton}
+          onPress={() => navigation.navigate('Registration' as never)}
+        >
+          <Text style={styles.verifyText}>Verify</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   );
 };
