@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Image,
   StatusBar,
   ScrollView,
   Modal,
@@ -34,10 +35,9 @@ const BankInfoScreen = () => {
   const [bankModal, setBankModal] = useState(false);
   const [typeModal, setTypeModal] = useState(false);
 
-  const handleContinue = () => {
-    // navigation.navigate('NextScreen' as never);
-    console.log({accountHolder, bankName, accountNumber, ifsc, accountType});
-  };
+const handleContinue = () => {
+  navigation.navigate('SelectCity' as never);
+};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,10 +49,13 @@ const BankInfoScreen = () => {
         keyboardShouldPersistTaps="handled">
 
         {/* Logo */}
-        <View style={styles.logoRow}>
-          <Icon name="truck-fast" size={32} color="#2F5BFF" />
-        </View>
-
+   <View style={styles.logoRow}>
+     <Image
+       source={require('../../assets/images/partner.png')}
+       style={styles.logo}
+       resizeMode="contain"
+     />
+   </View>
         <Text style={styles.heading}>Bank Information</Text>
         <Text style={styles.subheading}>
           Add your bank details to receive payments for your deliveries
@@ -236,6 +239,19 @@ export default BankInfoScreen;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#fff'},
+
+    logoRow: {
+      alignItems: 'center',
+      marginTop: 20,
+      marginBottom: 20,
+    },
+
+    logo: {
+      width: 80,
+      height: 80,
+    },
+
+
   scrollContent: {paddingHorizontal: 20, paddingBottom: 40},
   logoRow: {marginTop: 16, marginBottom: 12},
   heading: {fontSize: 22, fontWeight: '800', color: '#111'},

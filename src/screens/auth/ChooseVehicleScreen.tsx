@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f0f0f0',
   },
   backBtn: {marginRight: 8},
-  headerTitle: {fontSize: 18, fontWeight: '700', color: '#111'},
+  headerTitle: {fontSize: 20, fontWeight: '700', color: '#111'},
   list: {
     paddingHorizontal: 16,
     paddingTop: 16,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     overflow: 'hidden',
-    height: 150,
+    height: 220,
     borderWidth: 2,
     borderColor: 'transparent',
   },

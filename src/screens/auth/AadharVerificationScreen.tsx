@@ -162,10 +162,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f0f0f0',
   },
   backBtn: {marginRight: 8},
-  headerTitle: {fontSize: 18, fontWeight: '700', color: '#111'},
+  headerTitle: {fontSize: 20, fontWeight: '700', color: '#111'},
   content: {paddingHorizontal: 20, paddingTop: 28},
   fieldLabel: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
     color: '#2F5BFF',
     marginBottom: 8,

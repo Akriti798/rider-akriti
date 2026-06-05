@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Image,
   ScrollView,
   Modal,
   FlatList,
@@ -54,9 +55,13 @@ const VehicleInfoScreen = () => {
         keyboardShouldPersistTaps="handled">
 
         {/* Logo */}
-        <View style={styles.logoRow}>
-          <Icon name="truck-fast" size={32} color="#2F5BFF" />
-        </View>
+   <View style={styles.logoRow}>
+     <Image
+       source={require('../../assets/images/partner.png')}
+       style={styles.logo}
+       resizeMode="contain"
+     />
+   </View>
 
         <Text style={styles.heading}>Add your vehicle details</Text>
         <Text style={styles.subheading}>
@@ -240,6 +245,18 @@ export default VehicleInfoScreen;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#fff'},
+
+  logoRow: {
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+
+  logo: {
+    width: 80,
+    height: 80,
+  },
+
   scrollContent: {paddingHorizontal: 20, paddingBottom: 40},
   logoRow: {marginTop: 16, marginBottom: 12},
   heading: {fontSize: 22, fontWeight: '800', color: '#111'},
