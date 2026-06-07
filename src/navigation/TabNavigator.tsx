@@ -1,16 +1,13 @@
-// src/navigation/TabNavigator.tsx
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from '../screens/auth/HomeScreen'; // ✅ correct path
+import HomeScreen from '../screens/auth/HomeScreen';
+import ProfileScreen from '../screens/auth/ProfileScreen';
+import OrderScreen from '../screens/auth/OrderScreen';
 
-const OrderScreen = () => (
-  <View style={styles.placeholder}>
-    <Text style={styles.placeholderText}>Order Screen</Text>
-  </View>
-);
+
 
 const EarningsScreen = () => (
   <View style={styles.placeholder}>
@@ -18,11 +15,7 @@ const EarningsScreen = () => (
   </View>
 );
 
-const ProfileScreen = () => (
-  <View style={styles.placeholder}>
-    <Text style={styles.placeholderText}>Profile Screen</Text>
-  </View>
-);
+// ❌ REMOVED the old const ProfileScreen = () => (...) — that was the conflict
 
 const Tab = createBottomTabNavigator();
 

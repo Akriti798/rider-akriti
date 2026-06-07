@@ -174,9 +174,11 @@ const PartnerRegisterScreen = () => {
         </View>
 
         {/* Continue Button */}
-        <TouchableOpacity style={styles.continueButton}>
-          <Text style={styles.continueText}>Continue</Text>
-        </TouchableOpacity>
+<TouchableOpacity
+  style={styles.continueButton}
+  onPress={() => navigation.navigate('AadharVerification' as never)}>
+  <Text style={styles.continueText}>Continue</Text>
+</TouchableOpacity>
 
         {/* Already have account */}
         <View style={styles.loginRow}>

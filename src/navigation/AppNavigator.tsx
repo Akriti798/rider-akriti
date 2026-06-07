@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createContext, useContext} from 'react';
 import {ActivityIndicator, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -19,53 +19,60 @@ import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
+// ✅ Auth context so any screen can trigger logout
+export const AuthContext = createContext<{logout: () => void}>({
+  logout: () => {},
+});
+
+export const useAuth = () => useContext(AuthContext);
+
 export default function AppNavigator() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check if user is already logged in
     AsyncStorage.getItem('userToken').then(token => {
       setIsLoggedIn(!!token);
     });
   }, []);
 
-  // Show loading spinner while checking token
+  const logout = async () => {
+    await AsyncStorage.removeItem('userToken');
+    await AsyncStorage.removeItem('selectedCity');
+    setIsLoggedIn(false); // ✅ triggers re-render to show Login
+  };
+
   if (isLoggedIn === null) {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size="large" color="#2F5BFF" />
       </View>
     );
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        {isLoggedIn ? (
-          // User is logged in → go straight to Home
-          <>
+    <AuthContext.Provider value={{logout}}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          {isLoggedIn ? (
             <Stack.Screen name="Home" component={TabNavigator} />
-            <Stack.Screen name="MainTabs" component={TabNavigator} />
-          </>
-        ) : (
-          // User is not logged in → show auth flow
-          <>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="PartnerLogin" component={PartnerLoginScreen} />
-            <Stack.Screen name="OtpScreen" component={OtpScreen} />
-            <Stack.Screen name="PartnerEmailLogin" component={PartnerEmailLoginScreen} />
-            <Stack.Screen name="PartnerRegister" component={PartnerRegisterScreen} />
-            <Stack.Screen name="Registration" component={RegistrationScreen} />
-            <Stack.Screen name="AadharVerification" component={AadharVerificationScreen} />
-            <Stack.Screen name="ChooseVehicle" component={ChooseVehicleScreen} />
-            <Stack.Screen name="VehicleInfo" component={VehicleInfoScreen} />
-            <Stack.Screen name="BankInfo" component={BankInfoScreen} />
-            <Stack.Screen name="SelectCity" component={SelectCityScreen} />
-            <Stack.Screen name="Home" component={TabNavigator} />
-            <Stack.Screen name="MainTabs" component={TabNavigator} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+          ) : (
+            <>
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="PartnerLogin" component={PartnerLoginScreen} />
+              <Stack.Screen name="OtpScreen" component={OtpScreen} />
+              <Stack.Screen name="PartnerEmailLogin" component={PartnerEmailLoginScreen} />
+              <Stack.Screen name="PartnerRegister" component={PartnerRegisterScreen} />
+              <Stack.Screen name="Registration" component={RegistrationScreen} />
+              <Stack.Screen name="AadharVerification" component={AadharVerificationScreen} />
+              <Stack.Screen name="ChooseVehicle" component={ChooseVehicleScreen} />
+              <Stack.Screen name="VehicleInfo" component={VehicleInfoScreen} />
+              <Stack.Screen name="BankInfo" component={BankInfoScreen} />
+              <Stack.Screen name="SelectCity" component={SelectCityScreen} />
+              <Stack.Screen name="Home" component={TabNavigator} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }

@@ -131,7 +131,7 @@ const {mobile} =
 )}
       <TouchableOpacity
           style={styles.verifyButton}
-          onPress={() => navigation.navigate('Registration' as never)}
+          onPress={() => navigation.navigate('Home' as never)}
         >
           <Text style={styles.verifyText}>Verify</Text>
         </TouchableOpacity>
