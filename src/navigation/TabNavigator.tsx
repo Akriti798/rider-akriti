@@ -6,16 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from '../screens/auth/HomeScreen';
 import ProfileScreen from '../screens/auth/ProfileScreen';
 import OrderScreen from '../screens/auth/OrderScreen';
+import EarningsScreen from '../screens/auth/EarningsScreen';
 
-
-
-const EarningsScreen = () => (
-  <View style={styles.placeholder}>
-    <Text style={styles.placeholderText}>Earnings Screen</Text>
-  </View>
-);
-
-// ❌ REMOVED the old const ProfileScreen = () => (...) — that was the conflict
 
 const Tab = createBottomTabNavigator();
 

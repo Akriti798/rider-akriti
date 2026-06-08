@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Image,
   ScrollView,
   TextInput,
 } from 'react-native';
@@ -54,6 +55,14 @@ const OrderScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+
+            {/* Logo */}
+            <Image
+              source={require('../../assets/images/partner.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backCircle}>
@@ -64,6 +73,7 @@ const OrderScreen = () => {
           <Text style={styles.headerSub}>Online</Text>
         </View>
       </View>
+
 
       {/* Tabs */}
       <View style={styles.tabRow}>
@@ -114,43 +124,43 @@ const OrderScreen = () => {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 20, paddingTop: 8}}>
+        contentContainerStyle={{paddingBottom: 20, paddingTop: 10}}>
 
         {orders.map((order, index) => (
           <View key={index} style={styles.card}>
 
-            {/* Status Badge */}
+            {/* Status Badge — top-left pill */}
             <View style={[styles.badge, {backgroundColor: order.statusColor}]}>
               <Text style={styles.badgeText}>{order.status}</Text>
             </View>
 
             {/* Card Body */}
             <View style={styles.cardBody}>
-
-              {/* Cart Illustration Box */}
+              {/* Truck Icon Box */}
               <View style={styles.cartBox}>
-                <Icon name="truck-delivery-outline" size={32} color="#2F5BFF" />
+                <Icon name="truck-delivery-outline" size={30} color="#2F5BFF" />
               </View>
 
-              {/* Order Details */}
+              {/* Right side content */}
               <View style={styles.orderInfo}>
-
-                {/* Top row: ID + amount+items */}
+                {/* Top row: Order ID | Amount + chevron */}
                 <View style={styles.orderTopRow}>
                   <Text style={styles.orderId}>{order.id}</Text>
-                  <View style={styles.rightCol}>
-                    <View style={styles.amountRow}>
-                      <Text style={styles.amount}>{order.amount}</Text>
-                      <Icon name="chevron-right" size={15} color="#000" />
-                    </View>
-                    <Text style={styles.itemsRight}>{order.items}</Text>
+                  <View style={styles.amountRow}>
+                    <Text style={styles.amount}>{order.amount}</Text>
+                    <Icon name="chevron-right" size={16} color="#111" />
                   </View>
                 </View>
 
-                <Text style={styles.customerName}>{order.customer}</Text>
+                {/* Items count aligned under amount */}
+                <View style={styles.subRow}>
+                  <Text style={styles.customerName}>{order.customer}</Text>
+                  <Text style={styles.itemsRight}>{order.items}</Text>
+                </View>
+
                 <Text style={styles.address}>{order.address}</Text>
 
-                {/* Navigate button inline */}
+                {/* Navigate button — right-aligned, inline */}
                 {order.action === 'navigate' && (
                   <View style={styles.navigateRow}>
                     <TouchableOpacity style={styles.navigateBtn}>
@@ -160,7 +170,7 @@ const OrderScreen = () => {
                   </View>
                 )}
 
-                {/* Accept button */}
+                {/* Accept button — left-aligned with countdown on right */}
                 {order.action === 'accept' && (
                   <View style={styles.acceptRow}>
                     <TouchableOpacity style={styles.acceptBtn}>
@@ -174,20 +184,17 @@ const OrderScreen = () => {
 
             {/* Card Footer */}
             <View style={styles.cardFooter}>
-              {order.showPickedUp && (
+              {order.showPickedUp ? (
                 <View style={styles.footerLeft}>
                   <Icon name="clock-outline" size={13} color="#555" />
                   <Text style={styles.footerText}>Picked Up</Text>
                 </View>
+              ) : (
+                <View />
               )}
-              {order.time && (
-                <Text style={[
-                  styles.footerTime,
-                  !order.showPickedUp && {marginLeft: 'auto'},
-                ]}>
-                  {order.time}
-                </Text>
-              )}
+              {order.time ? (
+                <Text style={styles.footerTime}>{order.time}</Text>
+              ) : null}
             </View>
           </View>
         ))}
@@ -196,8 +203,8 @@ const OrderScreen = () => {
         <Text style={styles.summaryTitle}>Today's Summary</Text>
         <View style={styles.summaryRow}>
           {[
-            {icon: 'shopping-outline', value: '08', label: "Total Order"},
-            {icon: 'check-circle-outline', value: '08', label: "Total Order"},
+            {icon: 'shopping-outline', value: '08', label: 'Total Order'},
+            {icon: 'check-circle-outline', value: '08', label: 'Total Order'},
             {icon: 'clock-outline', value: '01', label: 'Ongoing'},
             {icon: 'wallet-outline', value: '412.50 Rs.', label: 'Total Earning'},
           ].map((item, i) => (
@@ -216,8 +223,9 @@ const OrderScreen = () => {
 export default OrderScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#F0F2FF'},
+  container: {flex: 1, backgroundColor: '#FFFFFF'},
 
+  /* ── Header ── */
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -226,6 +234,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     gap: 12,
   },
+
+  logo: {
+    width: 70,
+    height: 70,
+    marginLeft: 16,
+    marginTop: 10,
+    marginBottom:10,
+  },
+
   backCircle: {
     width: 36,
     height: 36,
@@ -240,12 +257,14 @@ const styles = StyleSheet.create({
   headerTitle: {fontSize: 18, fontWeight: '700', color: '#000'},
   headerSub: {fontSize: 12, color: '#4CAF50', fontWeight: '600'},
 
+  /* ── Tabs ── */
   tabRow: {
     flexDirection: 'row',
     backgroundColor: '#fff',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    gap: 8,
+    alignItems: 'center',
+    gap: 40,
   },
   tab: {
     flexDirection: 'row',
@@ -261,6 +280,7 @@ const styles = StyleSheet.create({
   tabText: {fontSize: 13, color: '#555', fontWeight: '600'},
   activeTabText: {color: '#fff'},
 
+  /* ── Filter row ── */
   filterRow: {
     flexDirection: 'row',
     paddingHorizontal: 16,
@@ -294,6 +314,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {flex: 1, fontSize: 13, color: '#333', paddingVertical: 7},
 
+  /* ── Card ── */
   card: {
     backgroundColor: '#fff',
     marginHorizontal: 16,
@@ -301,18 +322,25 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: 'hidden',
     elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+    shadowOffset: {width: 0, height: 2},
     borderWidth: 1,
     borderColor: '#E8E8E8',
   },
+
+  /* Status badge — top-left pill with rounded bottom-right */
   badge: {
     alignSelf: 'flex-start',
     paddingHorizontal: 14,
-    paddingVertical: 4,
+    paddingVertical: 5,
     borderBottomRightRadius: 10,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   badgeText: {fontSize: 11, color: '#fff', fontWeight: '700'},
 
+  /* Card body */
   cardBody: {
     flexDirection: 'row',
     paddingHorizontal: 12,
@@ -320,33 +348,45 @@ const styles = StyleSheet.create({
     gap: 12,
     alignItems: 'flex-start',
   },
+
+  /* Truck icon box */
   cartBox: {
-    width: 62,
-    height: 62,
+    width: 60,
+    height: 60,
     borderRadius: 12,
     backgroundColor: '#DDE3FF',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1.5,
     borderColor: '#B0BFFF',
+    flexShrink: 0,
   },
 
+  /* Order info column */
   orderInfo: {flex: 1},
+
   orderTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 2,
+  },
+  orderId: {fontSize: 13, fontWeight: '700', color: '#111'},
+  amountRow: {flexDirection: 'row', alignItems: 'center', gap: 1},
+  amount: {fontSize: 14, fontWeight: '700', color: '#111'},
+
+  subRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 3,
   },
-  orderId: {fontSize: 14, fontWeight: '700', color: '#111'},
-  rightCol: {alignItems: 'flex-end'},
-  amountRow: {flexDirection: 'row', alignItems: 'center'},
-  amount: {fontSize: 14, fontWeight: '700', color: '#111'},
-  itemsRight: {fontSize: 11, color: '#888', marginTop: 1},
+  customerName: {fontSize: 13, fontWeight: '700', color: '#111'},
+  itemsRight: {fontSize: 11, color: '#888'},
 
-  customerName: {fontSize: 13, fontWeight: '700', color: '#111', marginBottom: 2},
-  address: {fontSize: 12, color: '#555', lineHeight: 17, marginBottom: 8},
+  address: {fontSize: 12, color: '#666', lineHeight: 17, marginBottom: 8},
 
+  /* Navigate */
   navigateRow: {alignItems: 'flex-end'},
   navigateBtn: {
     flexDirection: 'row',
@@ -359,6 +399,7 @@ const styles = StyleSheet.create({
   },
   navigateBtnText: {color: '#fff', fontWeight: '700', fontSize: 13},
 
+  /* Accept */
   acceptRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -366,13 +407,14 @@ const styles = StyleSheet.create({
   },
   acceptBtn: {
     backgroundColor: '#2F5BFF',
-    paddingHorizontal: 28,
+    paddingHorizontal: 32,
     paddingVertical: 10,
     borderRadius: 8,
   },
-  acceptBtnText: {color: '#fff', fontWeight: '700', fontSize: 14},
+  acceptBtnText: {color: '#fff', fontWeight: '700', fontSize: 14, letterSpacing: 0.5},
   countdown: {fontSize: 13, color: '#888', fontWeight: '600'},
 
+  /* Card footer */
   cardFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -385,15 +427,16 @@ const styles = StyleSheet.create({
   },
   footerLeft: {flexDirection: 'row', alignItems: 'center', gap: 5},
   footerText: {fontSize: 12, color: '#555'},
-  footerTime: {fontSize: 12, color: '#555'},
+  footerTime: {fontSize: 12, color: '#666'},
 
+  /* Summary */
   summaryTitle: {
     fontSize: 16,
     fontWeight: '700',
     color: '#111',
     marginHorizontal: 16,
     marginBottom: 10,
-    marginTop: 6,
+    marginTop: 4,
   },
   summaryRow: {
     flexDirection: 'row',
