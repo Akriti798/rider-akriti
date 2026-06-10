@@ -17,7 +17,7 @@ import BankInfoScreen from '../screens/auth/BankInfoScreen';
 import SelectCityScreen from '../screens/auth/SelectCityScreen';
 import TabNavigator from './TabNavigator';
 import IncomingOrderScreen from '../screens/auth/IncomingOrderScreen';
-
+import OrderDeliveredScreen from '../screens/auth/OrderDeliveredScreen';
 const Stack = createNativeStackNavigator();
 
 // ✅ Auth context so any screen can trigger logout
@@ -73,6 +73,7 @@ export default function AppNavigator() {
               <Stack.Screen name="SelectCity" component={SelectCityScreen} />
               <Stack.Screen name="Home" component={TabNavigator} />
           <Stack.Screen name="IncomingOrder" component={IncomingOrderScreen}  />
+          <Stack.Screen name="OrderDelivered" component={OrderDeliveredScreen}  />
             </>
           )}
         </Stack.Navigator>

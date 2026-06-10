@@ -10,8 +10,8 @@ import {
   Switch,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import NewOrderPopup, {OrderData} from '../../components/NewOrderPopup';
 import {useNavigation} from '@react-navigation/native';
+
 
 const HomeScreen = () => {
   const [isOnline, setIsOnline] = useState(true);
@@ -96,6 +96,21 @@ const [incomingOrder, setIncomingOrder] =
   }>
   <Text style={{color: '#fff', fontWeight: '700'}}>
     Show Test Order
+  </Text>
+</TouchableOpacity>
+
+
+<TouchableOpacity
+  onPress={() => navigation.navigate('OrderDelivered')}
+  style={{
+    margin: 16,
+    backgroundColor: '#3458F6',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+  }}>
+  <Text style={{color: '#fff', fontWeight: '700'}}>
+    🧪 Test: Order Delivered Screen
   </Text>
 </TouchableOpacity>
 
