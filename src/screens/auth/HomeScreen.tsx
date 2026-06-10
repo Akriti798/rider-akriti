@@ -10,13 +10,20 @@ import {
   Switch,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import NewOrderPopup, {OrderData} from '../../components/NewOrderPopup';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [isOnline, setIsOnline] = useState(true);
+  const navigation = useNavigation();
+const [incomingOrder, setIncomingOrder] =
+  useState<OrderData | null>(null);
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 20}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 20}}>
 
         {/* Logo */}
         <Image
@@ -37,6 +44,7 @@ const HomeScreen = () => {
               <Text style={styles.subText}>Ready to deliver ?</Text>
             </View>
           </View>
+
           <TouchableOpacity style={styles.bellBtn}>
             <Icon name="bell" size={20} color="#111" />
           </TouchableOpacity>
@@ -46,85 +54,193 @@ const HomeScreen = () => {
         <View style={styles.card}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Icon name="briefcase-outline" size={22} color="#3458F6" />
+
             <View style={{marginLeft: 10}}>
               <Text style={styles.cardSmallLabel}>You are</Text>
               <Text style={styles.onlineText}>Online</Text>
             </View>
           </View>
+
           <Switch
             value={isOnline}
             onValueChange={setIsOnline}
             trackColor={{false: '#ccc', true: '#3458F6'}}
-            thumbColor={'#fff'}
+            thumbColor="#fff"
           />
         </View>
 
-        {/* Summary Card */}
+
+<TouchableOpacity
+  style={{
+    backgroundColor: '#3458F6',
+    marginHorizontal: 16,
+    marginBottom: 15,
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+  }}
+  onPress={() =>
+    navigation.navigate('IncomingOrder', {
+      order: {
+        id: 'ORD001',
+        pickupName: 'Shyam Grocery',
+        pickupAddress: '123 MG ROAD, BANGALURU',
+        pickupDistance: '3.2 Km',
+        dropName: 'Rahul Sharma',
+        dropAddress: 'A-205 MG ROAD, BANGALURU',
+        dropDistance: '5.6 Km',
+        itemCount: 12,
+        orderValue: 549,
+      },
+    })
+  }>
+  <Text style={{color: '#fff', fontWeight: '700'}}>
+    Show Test Order
+  </Text>
+</TouchableOpacity>
+
+
+
+
+
+        {/* Summary */}
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>Today's Summary</Text>
+
           <View style={styles.summaryRow}>
-
             <View style={styles.summaryItem}>
-              <View style={[styles.iconBox, {backgroundColor: '#E8F8EE'}]}>
-                <Icon name="shopping-outline" size={28} color="#4CD964" />
+              <View
+                style={[
+                  styles.iconBox,
+                  {backgroundColor: '#E8F8EE'},
+                ]}>
+                <Icon
+                  name="shopping-outline"
+                  size={28}
+                  color="#4CD964"
+                />
               </View>
+
               <Text style={styles.summaryValue}>12</Text>
-              <Text style={styles.summaryLabel}>Order{'\n'}Completed</Text>
+              <Text style={styles.summaryLabel}>
+                Order{'\n'}Completed
+              </Text>
             </View>
 
             <View style={styles.summaryItem}>
-              <View style={[styles.iconBox, {backgroundColor: '#E0F0FF'}]}>
-                <Icon name="map-marker-distance" size={28} color="#3A9FE8" />
+              <View
+                style={[
+                  styles.iconBox,
+                  {backgroundColor: '#E0F0FF'},
+                ]}>
+                <Icon
+                  name="map-marker-distance"
+                  size={28}
+                  color="#3A9FE8"
+                />
               </View>
+
               <Text style={styles.summaryValue}>98.6 km</Text>
-              <Text style={styles.summaryLabel}>Distance{'\n'}Covered</Text>
+              <Text style={styles.summaryLabel}>
+                Distance{'\n'}Covered
+              </Text>
             </View>
 
             <View style={styles.summaryItem}>
-              <View style={[styles.iconBox, {backgroundColor: '#FFF4E0'}]}>
-                <Icon name="clock-outline" size={28} color="#F5A623" />
+              <View
+                style={[
+                  styles.iconBox,
+                  {backgroundColor: '#FFF4E0'},
+                ]}>
+                <Icon
+                  name="clock-outline"
+                  size={28}
+                  color="#F5A623"
+                />
               </View>
+
               <Text style={styles.summaryValue}>6h 45m</Text>
-              <Text style={styles.summaryLabel}>Online{'\n'}Time</Text>
+              <Text style={styles.summaryLabel}>
+                Online{'\n'}Time
+              </Text>
             </View>
 
             <View style={styles.summaryItem}>
-              <View style={[styles.iconBox, {backgroundColor: '#F0EBFF'}]}>
-                <Icon name="wallet-outline" size={28} color="#9B72F5" />
+              <View
+                style={[
+                  styles.iconBox,
+                  {backgroundColor: '#F0EBFF'},
+                ]}>
+                <Icon
+                  name="wallet-outline"
+                  size={28}
+                  color="#9B72F5"
+                />
               </View>
+
               <Text style={styles.summaryValue}>1,240 Rs.</Text>
               <Text style={styles.summaryLabel}>Earnings</Text>
             </View>
-
           </View>
         </View>
 
-        {/* Great Job Card */}
+        {/* Great Job */}
         <View style={styles.card}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View style={styles.starBox}>
-              <Icon name="star-outline" size={20} color="#3458F6" />
+              <Icon
+                name="star-outline"
+                size={20}
+                color="#3458F6"
+              />
             </View>
+
             <View style={{marginLeft: 10}}>
               <Text style={styles.jobTitle}>Great job !</Text>
-              <Text style={styles.jobSub}>You're doing awesome today</Text>
+              <Text style={styles.jobSub}>
+                You're doing awesome today
+              </Text>
             </View>
           </View>
         </View>
 
         {/* Current Order */}
         <Text style={styles.heading}>Current Order</Text>
+
         <View style={styles.card}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View style={[styles.iconBox, {backgroundColor: '#E8F8EE', width: 52, height: 52, borderRadius: 10}]}>
-              <Icon name="shopping-outline" size={30} color="#4CD964" />
+            <View
+              style={[
+                styles.iconBox,
+                {
+                  backgroundColor: '#E8F8EE',
+                  width: 52,
+                  height: 52,
+                  borderRadius: 10,
+                },
+              ]}>
+              <Icon
+                name="shopping-outline"
+                size={30}
+                color="#4CD964"
+              />
             </View>
+
             <View style={{flex: 1, marginLeft: 12}}>
-              <Text style={styles.noOrderTitle}>No active orders</Text>
-              <Text style={styles.noOrderSub}>You will receive new orders soon.</Text>
+              <Text style={styles.noOrderTitle}>
+                No active orders
+              </Text>
+              <Text style={styles.noOrderSub}>
+                You will receive new orders soon.
+              </Text>
             </View>
+
             <View style={styles.mapBox}>
-              <Icon name="map-marker-outline" size={28} color="#ddd" />
+              <Icon
+                name="map-marker-outline"
+                size={28}
+                color="#ddd"
+              />
               <View style={styles.greenDot} />
             </View>
           </View>
@@ -132,8 +248,8 @@ const HomeScreen = () => {
 
         {/* Quick Actions */}
         <Text style={styles.heading}>Quick Actions</Text>
-        <View style={styles.quickRow}>
 
+        <View style={styles.quickRow}>
           <TouchableOpacity style={styles.quickBtn}>
             <Icon name="map-outline" size={28} color="#3458F6" />
             <Text style={styles.quickText}>Go to Zone</Text>
@@ -148,8 +264,9 @@ const HomeScreen = () => {
             <Icon name="headphones" size={28} color="#3458F6" />
             <Text style={styles.quickText}>Support</Text>
           </TouchableOpacity>
-
         </View>
+
+
       </ScrollView>
     </SafeAreaView>
   );

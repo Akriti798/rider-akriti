@@ -8,7 +8,6 @@ import ProfileScreen from '../screens/auth/ProfileScreen';
 import OrderScreen from '../screens/auth/OrderScreen';
 import EarningsScreen from '../screens/auth/EarningsScreen';
 
-
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {

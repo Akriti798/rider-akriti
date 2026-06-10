@@ -16,6 +16,7 @@ import VehicleInfoScreen from '../screens/auth/VehicleInfoScreen';
 import BankInfoScreen from '../screens/auth/BankInfoScreen';
 import SelectCityScreen from '../screens/auth/SelectCityScreen';
 import TabNavigator from './TabNavigator';
+import IncomingOrderScreen from '../screens/auth/IncomingOrderScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +46,9 @@ export default function AppNavigator() {
     return (
       <View style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size="large" color="#2F5BFF" />
+
       </View>
+
     );
   }
 
@@ -69,6 +72,7 @@ export default function AppNavigator() {
               <Stack.Screen name="BankInfo" component={BankInfoScreen} />
               <Stack.Screen name="SelectCity" component={SelectCityScreen} />
               <Stack.Screen name="Home" component={TabNavigator} />
+          <Stack.Screen name="IncomingOrder" component={IncomingOrderScreen}  />
             </>
           )}
         </Stack.Navigator>
