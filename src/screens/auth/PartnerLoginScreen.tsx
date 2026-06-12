@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useRoute, useNavigation} from '@react-navigation/native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,

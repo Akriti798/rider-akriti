@@ -1,6 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   StyleSheet,
@@ -8,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {useRoute, useNavigation} from '@react-navigation/native';
 const OtpScreen = () => {

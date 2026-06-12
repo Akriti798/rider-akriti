@@ -64,7 +64,7 @@ const handleCitySelect = async (city: string) => {
         <TouchableOpacity
           key={item}
           style={styles.cityRow}
-          onPress={() => handleCitySelect(item)}> {/* ✅ saves token */}
+          onPress={() => handleCitySelect(item)}>
           <Text style={styles.cityText}>{item}</Text>
         </TouchableOpacity>
       ))}

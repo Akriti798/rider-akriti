@@ -5,13 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  SafeAreaView,
   PanResponder,
   Animated,
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const BUTTON_WIDTH = Dimensions.get('window').width - 30 - 80 - 10; // full width minus margins minus reject btn
 const SLIDER_WIDTH = BUTTON_WIDTH - 16; // inner track width

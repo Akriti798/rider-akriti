@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -10,12 +9,13 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginScreen = () => {
   const [mobile, setMobile] = useState('');
 const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <StatusBar backgroundColor="#0D8BFF" barStyle="light-content" />
 
       <View style={styles.topSection}>

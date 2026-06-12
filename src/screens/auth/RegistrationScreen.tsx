@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
-  SafeAreaView,
   View,
   Text,
   TextInput,
@@ -14,6 +13,7 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'];
 
