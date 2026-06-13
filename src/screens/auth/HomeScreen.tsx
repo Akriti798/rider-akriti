@@ -264,17 +264,26 @@ const [incomingOrder, setIncomingOrder] =
         <Text style={styles.heading}>Quick Actions</Text>
 
         <View style={styles.quickRow}>
-          <TouchableOpacity style={styles.quickBtn}>
+          <TouchableOpacity
+            style={styles.quickBtn}
+            onPress={() => navigation.navigate('GoToZone')}
+          >
             <Icon name="map-outline" size={28} color="#3458F6" />
             <Text style={styles.quickText}>Go to Zone</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.quickBtn}>
+          <TouchableOpacity
+            style={styles.quickBtn}
+            onPress={() => navigation.navigate('Earnings')}
+          >
             <Icon name="wallet-outline" size={28} color="#3458F6" />
             <Text style={styles.quickText}>Earnings</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.quickBtn}>
+          <TouchableOpacity
+            style={styles.quickBtn}
+            onPress={() => navigation.navigate('Support')}
+          >
             <Icon name="headphones" size={28} color="#3458F6" />
             <Text style={styles.quickText}>Support</Text>
           </TouchableOpacity>

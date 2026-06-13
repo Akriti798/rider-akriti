@@ -12,10 +12,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LineChart} from 'react-native-chart-kit';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const screenWidth = Dimensions.get('window').width;
 
-const EarningsScreen = () => {
+type Props = {
+  navigation: NativeStackNavigationProp<any, 'Earnings'>;
+};
+
+const EarningsScreen = ({ navigation }: Props) => {
   const chartData = {
     labels: ['14 May', '15 May', '16 May', '17 May', '18 May', '19 May', '20 May'],
     datasets: [
@@ -38,7 +43,7 @@ const EarningsScreen = () => {
 
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backBtn}>
+          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back" size={24} color="#2D5BFF" />
           </TouchableOpacity>
 
@@ -138,56 +143,46 @@ const EarningsScreen = () => {
         {/* Breakdown */}
         <Text style={styles.sectionTitle}>Breakdown</Text>
 
-        <TouchableOpacity style={styles.breakdownCard}>
-          <MaterialCommunityIcons
-            name="wallet-outline"
-            size={28}
-            color="#2D7CFF"
-          />
-
+        {/* ← navigates to OrderEarningScreen */}
+        <TouchableOpacity
+          style={styles.breakdownCard}
+          onPress={() => navigation.navigate('OrderEarning')}
+        >
+          <MaterialCommunityIcons name="wallet-outline" size={28} color="#2D7CFF" />
           <View style={styles.breakdownText}>
             <Text style={styles.breakdownTitle}>Order Earnings</Text>
             <Text style={styles.breakdownSub}>8 Orders</Text>
           </View>
-
           <Text style={styles.breakdownAmount}>382.50 Rs.</Text>
-
           <Ionicons name="chevron-forward" size={20} color="#000" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.breakdownCard}>
-          <MaterialCommunityIcons
-            name="gift-outline"
-            size={28}
-            color="#2D7CFF"
-          />
-
+        <TouchableOpacity
+          style={styles.breakdownCard}
+          onPress={() => navigation.navigate('Incentives')}
+        >
+          <MaterialCommunityIcons name="gift-outline" size={28} color="#2D7CFF" />
           <View style={styles.breakdownText}>
             <Text style={styles.breakdownTitle}>Incentives</Text>
             <Text style={styles.breakdownSub}>3 Incentives</Text>
           </View>
-
           <Text style={styles.breakdownAmount}>30.00 Rs.</Text>
-
           <Ionicons name="chevron-forward" size={20} color="#000" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.breakdownCard}>
-          <MaterialCommunityIcons
-            name="cash-plus"
-            size={28}
-            color="#2D7CFF"
-          />
-
+        <TouchableOpacity
+          style={styles.breakdownCard}
+          onPress={() => navigation.navigate('Tips')}
+        >
+          <MaterialCommunityIcons name="cash-plus" size={28} color="#2D7CFF" />
           <View style={styles.breakdownText}>
             <Text style={styles.breakdownTitle}>Tips</Text>
             <Text style={styles.breakdownSub}>0 Tips</Text>
           </View>
-
           <Text style={styles.breakdownAmount}>00.00 Rs.</Text>
-
           <Ionicons name="chevron-forward" size={20} color="#000" />
         </TouchableOpacity>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -200,22 +195,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F5F5',
   },
-
   logo: {
     width: 70,
     height: 70,
     marginLeft: 16,
     marginTop: 10,
-    marginBottom:10,
+    marginBottom: 10,
   },
-
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
     marginTop: 10,
   },
-
   backBtn: {
     height: 38,
     width: 38,
@@ -226,18 +218,15 @@ const styles = StyleSheet.create({
     marginRight: 12,
     elevation: 4,
   },
-
   heading: {
     fontSize: 28,
     fontWeight: '700',
     color: '#111',
   },
-
   online: {
     color: '#1EBE5D',
     fontWeight: '600',
   },
-
   tabs: {
     flexDirection: 'row',
     marginHorizontal: 12,
@@ -248,27 +237,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#DDD',
   },
-
   tab: {
     flex: 1,
     paddingVertical: 12,
     alignItems: 'center',
   },
-
   activeTab: {
     backgroundColor: '#355CFF',
   },
-
   activeTabText: {
     color: '#fff',
     fontWeight: '700',
   },
-
   tabText: {
     color: '#000',
     fontWeight: '600',
   },
-
   datePicker: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -281,12 +265,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     elevation: 2,
   },
-
   dateText: {
     fontSize: 11,
     color: '#666',
   },
-
   card: {
     backgroundColor: '#355CFF',
     margin: 12,
@@ -295,60 +277,49 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 5,
   },
-
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingBottom: 12,
   },
-
   totalLabel: {
     color: '#DDE6FF',
     fontSize: 16,
   },
-
   totalAmount: {
     color: '#fff',
     fontSize: 38,
     fontWeight: '700',
   },
-
   orderCount: {
     color: '#E9EFFF',
   },
-
   divider: {
     height: 1,
     backgroundColor: 'rgba(255,255,255,0.25)',
   },
-
   statsRow: {
     flexDirection: 'row',
     paddingVertical: 12,
   },
-
   statBox: {
     flex: 1,
     paddingHorizontal: 10,
   },
-
   statTitle: {
     color: '#DCE5FF',
     fontSize: 12,
   },
-
   statValue: {
     color: '#fff',
     fontWeight: '700',
     marginTop: 4,
   },
-
   verticalDivider: {
     width: 1,
     backgroundColor: 'rgba(255,255,255,0.3)',
   },
-
   sectionTitle: {
     marginHorizontal: 12,
     marginTop: 10,
@@ -357,12 +328,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#111',
   },
-
   chart: {
     borderRadius: 12,
     alignSelf: 'center',
   },
-
   breakdownCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -373,26 +342,21 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     elevation: 3,
   },
-
   breakdownText: {
     flex: 1,
     marginLeft: 10,
   },
-
   breakdownTitle: {
     fontWeight: '700',
     color: '#111',
   },
-
   breakdownSub: {
     color: '#777',
     marginTop: 2,
   },
-
   breakdownAmount: {
     fontWeight: '700',
     color: '#111',
     marginRight: 8,
   },
-
 });

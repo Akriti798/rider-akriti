@@ -45,7 +45,7 @@ const IncomingOrderScreen = () => {
           }).start(() => {
             setAccepted(true);
             setTimeout(() => {
-              navigation.navigate('Home');
+              navigation.navigate('OrderAccept');
             }, 300);
           });
         } else {
@@ -190,6 +190,7 @@ const IncomingOrderScreen = () => {
         </TouchableOpacity>
 
         {/* Slide to Accept Button */}
+
         <Animated.View style={[styles.acceptBtn, {backgroundColor: trackColor}]}>
           {/* Background label */}
           <Animated.Text style={[styles.acceptTitle, {opacity: textOpacity}]}>

@@ -18,6 +18,13 @@ import SelectCityScreen from '../screens/auth/SelectCityScreen';
 import TabNavigator from './TabNavigator';
 import IncomingOrderScreen from '../screens/auth/IncomingOrderScreen';
 import OrderDeliveredScreen from '../screens/auth/OrderDeliveredScreen';
+import GoToZoneScreen from '../screens/auth/GoToZoneScreen';
+import IncentivesScreen from '../screens/auth/IncentivesScreen';
+import TipsScreen from '../screens/auth/TipsScreen';
+import OrderEarningScreen from '../screens/auth/OrderEarningScreen';
+import OrderAcceptScreen from '../screens/auth/OrderAcceptScreen';
+
+
 const Stack = createNativeStackNavigator();
 
 // ✅ Auth context so any screen can trigger logout
@@ -74,6 +81,14 @@ export default function AppNavigator() {
               <Stack.Screen name="Home" component={TabNavigator} />
           <Stack.Screen name="IncomingOrder" component={IncomingOrderScreen}  />
           <Stack.Screen name="OrderDelivered" component={OrderDeliveredScreen}  />
+                    <Stack.Screen name="Incentives" component={IncentivesScreen}  />
+          <Stack.Screen name="OrderEarning" component={OrderEarningScreen}  />
+          <Stack.Screen name="Tips" component={TipsScreen}  />
+          <Stack.Screen name="OrderAccept" component={OrderAcceptScreen}  />
+
+
+          <Stack.Screen name="GoToZone" component={GoToZoneScreen}  />
+
             </>
           )}
         </Stack.Navigator>
