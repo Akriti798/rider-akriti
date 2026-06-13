@@ -23,7 +23,6 @@ import IncentivesScreen from '../screens/auth/IncentivesScreen';
 import TipsScreen from '../screens/auth/TipsScreen';
 import OrderEarningScreen from '../screens/auth/OrderEarningScreen';
 import OrderAcceptScreen from '../screens/auth/OrderAcceptScreen';
-import HelpSupportScreen from '../screens/auth/HelpSupportScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -86,7 +85,6 @@ export default function AppNavigator() {
           <Stack.Screen name="OrderEarning" component={OrderEarningScreen}  />
           <Stack.Screen name="Tips" component={TipsScreen}  />
           <Stack.Screen name="OrderAccept" component={OrderAcceptScreen}  />
-          <Stack.Screen name="HelpSupport" component={HelpSupportScreen}  />
 
 
           <Stack.Screen name="GoToZone" component={GoToZoneScreen}  />

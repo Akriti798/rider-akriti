@@ -81,7 +81,26 @@ export default function TipsScreen({ navigation }: Props) {
 
       </ScrollView>
 
-
+      {/* ── Bottom Tab Bar ── */}
+      <View style={styles.bottomBar}>
+        {[
+          { icon: 'home-outline',   label: 'HOME',     active: false },
+          { icon: 'cube-outline',   label: 'ORDER',    active: false },
+          { icon: 'cash-outline',   label: 'Earnings', active: true  },
+          { icon: 'person-outline', label: 'PROFILE',  active: false },
+        ].map(tab => (
+          <TouchableOpacity key={tab.label} style={styles.tabItem}>
+            <Ionicons
+              name={tab.active ? tab.icon.replace('-outline', '') : tab.icon}
+              size={22}
+              color={tab.active ? '#3A6FF8' : '#999'}
+            />
+            <Text style={[styles.tabLabel, tab.active && styles.tabLabelActive]}>
+              {tab.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
     </SafeAreaView>
   );
@@ -173,5 +192,19 @@ const styles = StyleSheet.create({
     fontSize: 13, color: '#999', textAlign: 'center',
   },
 
-
+  /* ── Bottom Tab Bar ── */
+  bottomBar: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderTopWidth: 1, borderTopColor: '#EEEEEE',
+    paddingBottom: Platform.OS === 'ios' ? 20 : 8,
+    paddingTop: 8,
+    ...Platform.select({
+      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.06, shadowRadius: 4 },
+      android: { elevation: 10 },
+    }),
+  },
+  tabItem:        { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3 },
+  tabLabel:       { fontSize: 10, color: '#999', fontWeight: '600' },
+  tabLabelActive: { color: '#3A6FF8' },
 });

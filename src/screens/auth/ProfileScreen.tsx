@@ -92,17 +92,15 @@ const ProfileScreen = () => {
           </TouchableOpacity>
 
           {/* Help & Support */}
-            <TouchableOpacity
-                      style={styles.menuCard}
-                      onPress={() => navigation.navigate('HelpSupport')}>
-                      <View style={styles.menuLeft}>
-                        <Icon name="help-circle-outline" size={26} color="#2F5BFF" />
-                        <Text style={styles.menuText}>Help & Support</Text>
-                      </View>
-                      <View style={styles.arrowCircle}>
-                        <Icon name="chevron-right" size={20} color="#000" />
-                      </View>
-                    </TouchableOpacity>
+          <TouchableOpacity style={styles.menuCard}>
+            <View style={styles.menuLeft}>
+              <Icon name="help-circle-outline" size={26} color="#2F5BFF" />
+              <Text style={styles.menuText}>Help & Support</Text>
+            </View>
+            <View style={styles.arrowCircle}>
+              <Icon name="chevron-right" size={20} color="#000" />
+            </View>
+          </TouchableOpacity>
 
           {/* Log Out */}
           <TouchableOpacity style={styles.menuCard} onPress={handleLogout}>
